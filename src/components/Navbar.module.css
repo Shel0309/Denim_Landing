@@ -1,0 +1,343 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .navContainer {
+    padding: 1.2rem 1rem;
+  }
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--invert-text);
+}
+
+.desktopMenu {
+  display: none;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .desktopMenu {
+    display: flex;
+  }
+}
+
+.navLink {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--invert-text);
+}
+
+.linkNum {
+  color: var(--text-secondary);
+  margin-right: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cartBtn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--invert-text);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.cartBtn:hover, .themeBtn:hover {
+  background: var(--invert-text);
+  color: var(--invert-bg-heavy);
+  border-color: var(--invert-text);
+}
+
+.themeBtn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  padding: 0.4rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.menuBtn {
+  color: var(--invert-text);
+}
+
+@media (min-width: 768px) {
+  .menuBtn {
+    display: none;
+  }
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
+  background-image: var(--bg-pattern);
+  background-size: var(--bg-size);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.mobileMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
+}
+
+.mobileLinks a {
+  color: var(--invert-text);
+}
+
+/* Cart Drawer */
+.cartOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cartContent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  background-image: var(--bg-pattern);
+  background-size: var(--bg-size);
+  border-left: 1px solid var(--border-color);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .cartContent {
+    padding: 2rem 1rem;
+  }
+}
+
+.cartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.closeCartBtn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.closeCartBtn:hover {
+  color: var(--invert-text);
+  border-color: var(--invert-text);
+}
+
+.emptyCart {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.cartItemsList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: auto;
+  margin-bottom: 2rem;
+  padding-right: 0.5rem;
+}
+
+.cartItem {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+}
+
+.itemThumb {
+  width: 90px;
+  height: 110px;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  background: #111;
+}
+
+.itemInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.itemTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.itemTitleRow h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.itemSize {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.itemPrice {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.quantityControls button {
+  border: 1px solid var(--border-color);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--invert-text);
+  transition: all 0.2s ease;
+}
+
+.quantityControls button:hover {
+  border-color: var(--invert-text);
+}
+
+.trashBtn {
+  margin-left: auto;
+  color: var(--text-secondary) !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.trashBtn:hover {
+  color: #ff453a !important;
+}
+
+.cartFooter {
+  border-top: 1px solid var(--border-color);
+  padding-top: 2rem;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.totalPrice {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--invert-text);
+}
+
+.checkoutBtn {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: var(--invert-text);
+  color: var(--invert-bg-heavy);
+  border: 1px solid var(--invert-text);
+  padding: 1.2rem;
+  width: 100%;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.checkoutBtn:hover {
+  background: transparent;
+  color: var(--invert-text);
+  border-color: var(--border-color);
+}

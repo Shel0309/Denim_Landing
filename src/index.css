@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+
+:root {
+  --bg-color: #08080a;
+  --bg-pattern: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  --bg-size: 40px 40px;
+  --text-color: #ffffff;
+  --text-secondary: #8e8e93;
+  --border-color: rgba(255, 255, 255, 0.25);
+  
+  --invert-bg: #111111;
+  --invert-bg-heavy: #000000;
+  --invert-text: #ffffff;
+  --invert-text-light: rgba(255, 255, 255, 0.03);
+  --invert-text-hover: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(8, 8, 10, 0.85);
+  --noise-opacity: 0.06;
+  
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+html[data-theme='light'] {
+  --bg-color: #f4f4f5;
+  --bg-pattern: 
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  --text-color: #111111;
+  --text-secondary: #6e6e73;
+  --border-color: rgba(0, 0, 0, 0.25);
+  
+  --invert-bg: #ffffff;
+  --invert-bg-heavy: #ffffff;
+  --invert-text: #000000;
+  --invert-text-light: rgba(0, 0, 0, 0.03);
+  --invert-text-hover: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(244, 244, 245, 0.85);
+  --noise-opacity: 0.04;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  background-image: var(--bg-pattern);
+  background-size: var(--bg-size);
+  background-position: center center;
+  color: var(--text-color);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+a:active {
+  transform: scale(0.97);
+  opacity: 0.8;
+}
+
+button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+button:active {
+  transform: scale(0.97);
+  opacity: 0.8;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+/* Film Grain Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: var(--noise-opacity);
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom raw grid lines */
+.grid-line {
+  border-top: 1px solid var(--border-color);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+  overflow: hidden;
+  animation: wipe-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html.theme-transition-reversing ::view-transition-old(root) {
+  z-index: 2;
+  animation: wipe-out 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html.theme-transition-reversing ::view-transition-new(root) {
+  z-index: 1;
+  animation: none;
+}
+
+@keyframes wipe-in {
+  from {
+    clip-path: circle(0px at var(--click-x, 50%) var(--click-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--end-radius, 100vw) at var(--click-x, 50%) var(--click-y, 50%));
+  }
+}
+
+@keyframes wipe-out {
+  from {
+    clip-path: circle(var(--end-radius, 100vw) at var(--click-x, 50%) var(--click-y, 50%));
+  }
+  to {
+    clip-path: circle(0px at var(--click-x, 50%) var(--click-y, 50%));
+  }
+}
+
+.mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+}
