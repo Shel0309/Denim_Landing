@@ -62,7 +62,7 @@ const Jeans3DScene = () => {
         className={styles.jeansWrapper}
       >
         <img 
-          src="/images/hero_jeans.png" 
+          src="images/hero_jeans.png" 
           alt="AURA Baggy Denim" 
           className={styles.jeansImage} 
         />

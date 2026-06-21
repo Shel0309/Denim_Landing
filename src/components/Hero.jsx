@@ -44,7 +44,7 @@ const Hero = () => {
             className={styles.imageContainer}
           >
             <img 
-              src="/images/hero_model.png" 
+              src="images/hero_model.png" 
               alt="VOID Baggy Denim Campaign" 
               className={styles.campaignImage}
             />
